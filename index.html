@@ -1,134 +1,399 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tecnología Feniix | Gadgets y Tecnología con Pago al Recibir</title>
-  <style>
-    :root { --bg: #0f172a; --card: #1e293b; --accent: #ef4444; --text: #f8fafc; --muted: #94a3b8; }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background: var(--bg); color: var(--text); line-height: 1.5; }
-    .banner { background: var(--accent); text-align: center; padding: 8px; font-size: 0.85rem; font-weight: 700; }
-    header { padding: 20px; text-align: center; border-bottom: 1px solid #334155; }
-    header h1 { font-size: 1.6rem; letter-spacing: 1px; }
-    header p { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
-    .container { max-width: 960px; margin: 0 auto; padding: 20px; }
-    .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 28px; }
-    .trust div { background: var(--card); padding: 14px; border-radius: 10px; text-align: center; font-size: 0.9rem; border: 1px solid #334155; }
-    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 36px; }
-    .card { background: var(--card); border-radius: 12px; padding: 18px; border: 1px solid #334155; display: flex; flex-direction: column; justify-content: space-between; }
-    .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; background: #0b1120; margin-bottom: 12px; }
-    .price { font-size: 1.3rem; font-weight: 800; color: #38bdf8; margin: 8px 0; }
-    .btn { background: var(--accent); color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; font-size: 1rem; }
-    .btn:hover { opacity: 0.9; }
-    .checkout { background: var(--card); padding: 24px; border-radius: 14px; border: 1px solid var(--accent); max-width: 520px; margin: 0 auto; }
-    .checkout h2 { margin-bottom: 14px; font-size: 1.3rem; }
-    .field { margin-bottom: 12px; }
-    .field label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; }
-    .field input, .field select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: white; }
-    footer { text-align: center; padding: 30px 20px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid #334155; margin-top: 40px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnología Feniix - El Poder del Fénix en tus Manos</title>
+    <!-- Tailwind CSS para la estructura -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS para efectos de movimiento al hacer scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- FontAwesome para iconos atractivos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Paleta de Colores Inspirada en el Logo Fénix (Rojo, Oro, Negro) */
+        :root {
+            --color-bg: #050508;
+            --color-card: #0d0d12;
+            --color-fenix-red: #ff2a2a;
+            --color-fenix-dark-red: #9e0e0e;
+            --color-gold: #ffaa00;
+            --color-gold-hover: #e59900;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: #f3f4f6;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Efecto de partículas de fuego flotando de fondo */
+        .particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(20, 5, 5, 0.4) 0%, rgba(5, 5, 8, 1) 100%);
+        }
+
+        /* Brillo de Fuego animado en los bordes */
+        .glow-border {
+            position: relative;
+            border: 1px solid rgba(255, 42, 42, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glow-border:hover {
+            border-color: var(--color-fenix-red);
+            box-shadow: 0 0 25px rgba(255, 42, 42, 0.45);
+            transform: translateY(-8px);
+        }
+
+        /* Botón de Fuego Interactivo */
+        .btn-fenix {
+            background: linear-gradient(135deg, var(--color-fenix-dark-red) 0%, var(--color-fenix-red) 50%, var(--color-gold) 100%);
+            background-size: 200% auto;
+            box-shadow: 0 4px 15px rgba(255, 42, 42, 0.4);
+            transition: all 0.4s ease;
+        }
+        .btn-fenix:hover {
+            background-position: right center;
+            box-shadow: 0 6px 25px rgba(255, 170, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Títulos con Gradiente de Fuego */
+        .text-gradient {
+            background: linear-gradient(90deg, #ff2a2a, #ff7700, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 5px 15px rgba(255, 42, 42, 0.1);
+        }
+
+        /* Efecto de pulso de fuego en el Logo */
+        .logo-pulse {
+            animation: pulse 3s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(255, 42, 42, 0.4)); }
+            50% { transform: scale(1.03); filter: drop-shadow(0 0 20px rgba(255, 170, 0, 0.6)); }
+        }
+
+        /* Animación de Fuego en badges */
+        .fire-badge {
+            background: linear-gradient(45deg, #ff2a2a, #ff7700);
+            animation: flicker 1.5s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.9; }
+            100% { opacity: 1; box-shadow: 0 0 12px rgba(255, 119, 0, 0.6); }
+        }
+    </style>
 </head>
 <body>
-  <div class="banner">🚚 ENVÍOS A TODO CHILE | 💵 PAGA AL RECIBIR EN TU CASA</div>
-  <header>
-    <h1>TECNOLOGÍA FENIIX</h1>
-    <p>Innovación, gadgets y accesorios seleccionados para tu día a día</p>
-  </header>
 
-  <main class="container">
-    <section class="trust">
-      <div>📦 <strong>Pago Contra Entrega</strong><br><small>Pagas solo cuando recibes</small></div>
-      <div>⚡ <strong>Despacho Rápido</strong><br><small>2 a 5 días hábiles vía Blue Express</small></div>
-      <div>🛡️ <strong>Compra Segura</strong><br><small>Atención directa por WhatsApp</small></div>
+    <!-- Fondo de Partículas -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- Barra de Anuncios Animada -->
+    <div class="bg-gradient-to-r from-red-800 via-red-600 to-amber-500 py-1.5 px-4 text-center text-xs font-bold tracking-widest uppercase shadow-md animate-pulse">
+        🔥 <span class="text-white">ENVÍOS A TODO CHILE</span> - Paga al Recibir en tu Casa 🚚
+    </div>
+
+    <!-- Encabezado / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-black/80 border-b border-red-950/40 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-black rounded-full border border-red-500 flex items-center justify-center logo-pulse overflow-hidden">
+                    <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/image_12.png" alt="Tecnología Feniix Logo" class="object-cover w-full h-full" onerror="this.src='https://i.ibb.co/680373p/fenix.png'">
+                </div>
+                <div>
+                    <h1 class="text-lg font-black tracking-widest text-gradient">TECNOLOGÍA FENIIX</h1>
+                    <p class="text-[9px] uppercase tracking-wider text-amber-500 font-semibold">Resurge con la mejor tecnología</p>
+                </div>
+            </div>
+            <a href="#productos" class="btn-fenix px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-fire"></i> Ver Ofertas
+            </a>
+        </div>
+    </header>
+
+    <!-- Banner Principal Interactivo (Hero) -->
+    <section class="relative py-12 px-4 overflow-hidden border-b border-red-950/40">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div class="flex-1 text-center md:text-left" data-aos="fade-right">
+                <span class="fire-badge text-white text-[10px] font-black uppercase px-3 py-1 rounded-full tracking-widest">
+                    OFERTAS DE LANZAMIENTO 🔥
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black mt-4 tracking-tight leading-none text-white">
+                    EL PODER DEL <br><span class="text-gradient">FÉNIX EN TUS MANOS</span>
+                </h2>
+                <p class="mt-4 text-gray-400 text-sm md:text-base max-w-md">
+                    Descubre los gadgets más potentes e innovadores seleccionados para tu día a día. Compras 100% seguras con pago en casa.
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#productos" class="btn-fenix px-8 py-3.5 rounded-lg text-sm font-black uppercase tracking-wider flex items-center justify-center gap-3">
+                        EXPLORAR CATÁLOGO <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-1 max-w-sm" data-aos="fade-left">
+                <div class="relative p-2 rounded-2xl border border-red-500/30 bg-gradient-to-br from-red-950/20 to-black glow-border">
+                    <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/image_12.png" alt="Logo de la tienda" class="w-full rounded-xl logo-pulse">
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="products" id="catalogo">
-      <article class="card">
-        <div>
-          <img src="https://via.placeholder.com/400x300?text=Producto+1" alt="Producto 1">
-          <h3>Producto Estrella 1</h3>
-          <p style="color:#94a3b8;font-size:0.9rem;">Descripción breve de los beneficios principales del producto.</p>
+    <!-- Ventajas de la Tienda -->
+    <section class="py-10 bg-black/40 border-b border-red-950/30">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-card border border-red-950/20" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 rounded-full bg-red-950/40 flex items-center justify-center text-red-500 text-xl shadow-inner border border-red-900/35">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm">DESPACHO RÁPIDO</h4>
+                    <p class="text-xs text-gray-400">Entrega de 1 a 3 días hábiles en Santiago y regiones.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-card border border-red-950/20" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 rounded-full bg-amber-950/45 flex items-center justify-center text-amber-500 text-xl border border-amber-900/30">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm">PAGO CONTRA ENTREGA</h4>
+                    <p class="text-xs text-gray-400">Pagas en efectivo o transferencia al recibir el producto.</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 p-4 rounded-xl bg-card border border-red-950/20" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 rounded-full bg-red-950/40 flex items-center justify-center text-red-500 text-xl border border-red-900/35">
+                    <i class="fa-solid fa-shield-check"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm">GARANTÍA SIN COMPLICACIONES</h4>
+                    <p class="text-xs text-gray-400">Asistencia y soporte rápido y directo por WhatsApp.</p>
+                </div>
+            </div>
         </div>
-        <div>
-          <div class="price">$19.990</div>
-          <button class="btn" onclick="seleccionar('Producto Estrella 1 - $19.990')">Pedir Contra Entrega</button>
-        </div>
-      </article>
-
-      <article class="card">
-        <div>
-          <img src="https://via.placeholder.com/400x300?text=Producto+2" alt="Producto 2">
-          <h3>Producto Estrella 2</h3>
-          <p style="color:#94a3b8;font-size:0.9rem;">Descripción breve de los beneficios principales del producto.</p>
-        </div>
-        <div>
-          <div class="price">$24.990</div>
-          <button class="btn" onclick="seleccionar('Producto Estrella 2 - $24.990')">Pedir Contra Entrega</button>
-        </div>
-      </article>
     </section>
 
-    <section class="checkout" id="pedido">
-      <h2>📝 Completa tu pedido (Pago al recibir)</h2>
-      <form onsubmit="enviarPedido(event)">
-        <div class="field">
-          <label>Producto seleccionado</label>
-          <input type="text" id="producto" value="Producto Estrella 1 - $19.990" required />
+    <!-- Galería de Productos -->
+    <section id="productos" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-amber-500 text-xs font-bold uppercase tracking-widest">NUESTROS ELEGIDOS</span>
+                <h3 class="text-3xl font-black text-gradient mt-1">PRODUCTOS ESTRELLA</h3>
+                <p class="text-gray-400 text-xs max-w-md mx-auto mt-2">Los artículos más vendidos y con garantía de satisfacción total.</p>
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Producto 1 -->
+                <div class="bg-card rounded-2xl overflow-hidden glow-border p-4 flex flex-col justify-between" data-aos="zoom-in">
+                    <div class="relative h-64 bg-black/60 rounded-xl overflow-hidden flex items-center justify-center">
+                        <span class="absolute top-3 left-3 fire-badge text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider">
+                            MÁS VENDIDO 🔥
+                        </span>
+                        <div class="text-gray-500 text-center flex flex-col items-center">
+                            <i class="fa-solid fa-microchip text-4xl mb-3 text-red-500 animate-pulse"></i>
+                            <span class="text-xs font-semibold">Cargando Producto Estrella 1...</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-xl font-bold text-white">Producto Estrella 1</h4>
+                        <p class="text-xs text-gray-400 mt-1 line-clamp-2">
+                            Descripción breve y atractiva de los beneficios principales del producto. Destaca su potencia y utilidad.
+                        </p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="text-2xl font-black text-amber-500">$19.990 <span class="text-xs text-gray-500 line-through font-normal">$34.990</span></div>
+                            <span class="text-[10px] font-bold text-green-500 uppercase flex items-center gap-1"><i class="fa-solid fa-check"></i> Stock Disponible</span>
+                        </div>
+                        <button onclick="seleccionarProducto('Producto Estrella 1', 19990)" class="btn-fenix w-full py-3 rounded-lg text-xs font-black uppercase tracking-wider mt-5 flex items-center justify-center gap-2">
+                            PEDIR CONTRA ENTREGA <i class="fa-solid fa-truck"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="bg-card rounded-2xl overflow-hidden glow-border p-4 flex flex-col justify-between" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative h-64 bg-black/60 rounded-xl overflow-hidden flex items-center justify-center">
+                        <span class="absolute top-3 left-3 fire-badge text-white text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider">
+                            RECOMENDADO 🔥
+                        </span>
+                        <div class="text-gray-500 text-center flex flex-col items-center">
+                            <i class="fa-solid fa-plug text-4xl mb-3 text-amber-500 animate-pulse"></i>
+                            <span class="text-xs font-semibold">Cargando Producto Estrella 2...</span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-xl font-bold text-white">Producto Estrella 2</h4>
+                        <p class="text-xs text-gray-400 mt-1 line-clamp-2">
+                            Características increíbles de tu segundo artículo ganador. Listo para impresionar con su gran calidad.
+                        </p>
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="text-2xl font-black text-amber-500">$24.990 <span class="text-xs text-gray-500 line-through font-normal">$44.990</span></div>
+                            <span class="text-[10px] font-bold text-green-500 uppercase flex items-center gap-1"><i class="fa-solid fa-check"></i> Pocas Unidades</span>
+                        </div>
+                        <button onclick="seleccionarProducto('Producto Estrella 2', 24990)" class="btn-fenix w-full py-3 rounded-lg text-xs font-black uppercase tracking-wider mt-5 flex items-center justify-center gap-2">
+                            PEDIR CONTRA ENTREGA <i class="fa-solid fa-truck"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="field">
-          <label>Nombre y Apellido</label>
-          <input type="text" id="nombre" placeholder="Ej: Camila Soto" required />
-        </div>
-        <div class="field">
-          <label>Teléfono / WhatsApp</label>
-          <input type="tel" id="telefono" placeholder="Ej: +56 9 1234 5678" required />
-        </div>
-        <div class="field">
-          <label>Dirección exacta (Calle, número, depto)</label>
-          <input type="text" id="direccion" placeholder="Ej: Av. Principal 1234, Depto 402" required />
-        </div>
-        <div class="field">
-          <label>Comuna y Región</label>
-          <input type="text" id="comuna" placeholder="Ej: San Bernardo, Región Metropolitana" required />
-        </div>
-        <button type="submit" class="btn">Confirmar Pedido por WhatsApp 🚀</button>
-      </form>
     </section>
-  </main>
 
-  <footer>
-    <p>© 2026 Tecnología Feniix Chile. Todos los derechos reservados.</p>
-    <p>Políticas de Envío y Garantía | Atención al Cliente vía WhatsApp</p>
-  </footer>
+    <!-- Sección del Formulario de Pedido -->
+    <section id="pedido" class="py-12 bg-gradient-to-t from-red-950/10 to-transparent border-t border-red-950/30 px-4">
+        <div class="max-w-xl mx-auto bg-card rounded-2xl border border-red-500/20 p-6 glow-border" data-aos="fade-up">
+            <div class="text-center mb-6">
+                <span class="fire-badge text-white text-[9px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-widest">
+                    COMPRA SEGURA 🛡️
+                </span>
+                <h3 class="text-2xl font-black text-white mt-1">Completa tu Pedido</h3>
+                <p class="text-xs text-gray-400 mt-1">Pagas al recibir en tu domicilio. ¡Fácil y rápido!</p>
+            </div>
 
-  <script>
-    // REEMPLAZA ESTE NÚMERO POR TU WHATSAPP BUSINESS (con 569...)
-    const WHATSAPP_TIENDA = "56900000000";
+            <form id="formulario-pedido" onsubmit="enviarPedido(event)" class="space-y-4 text-xs">
+                <!-- Selección de Producto -->
+                <div>
+                    <label class="block text-gray-400 font-semibold mb-1 uppercase tracking-wider">Producto seleccionado</label>
+                    <select id="producto-pedido" class="w-full bg-black/60 border border-red-950/60 rounded-lg py-2.5 px-3 text-white font-bold" required onchange="actualizarPrecio(this)">
+                        <option value="Producto Estrella 1" data-precio="19990">Producto Estrella 1 ($19.990)</option>
+                        <option value="Producto Estrella 2" data-precio="24990">Producto Estrella 2 ($24.990)</option>
+                    </select>
+                </div>
 
-    function seleccionar(prod) {
-      document.getElementById('producto').value = prod;
-      document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
-    }
+                <!-- Datos del Cliente -->
+                <div>
+                    <label class="block text-gray-400 font-semibold mb-1 uppercase tracking-wider">Tu Nombre Completo</label>
+                    <input type="text" id="nombre-pedido" placeholder="Ej: Juan Pérez" class="w-full bg-black/40 border border-red-950/40 rounded-lg py-2 px-3 text-white focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition" required>
+                </div>
 
-    function enviarPedido(e) {
-      e.preventDefault();
-      const prod = document.getElementById('producto').value;
-      const nom = document.getElementById('nombre').value;
-      const tel = document.getElementById('telefono').value;
-      const dir = document.getElementById('direccion').value;
-      const com = document.getElementById('comuna').value;
+                <div>
+                    <label class="block text-gray-400 font-semibold mb-1 uppercase tracking-wider">Número de Teléfono</label>
+                    <input type="tel" id="telefono-pedido" placeholder="Ej: 912345678" class="w-full bg-black/40 border border-red-950/40 rounded-lg py-2 px-3 text-white focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition" required>
+                </div>
 
-      const mensaje = `¡Hola Tecnología Feniix! Quiero confirmar mi pedido contra entrega:%0A%0A` +
-        `📦 *Producto:* ${prod}%0A` +
-        `👤 *Nombre:* ${nom}%0A` +
-        `📱 *Teléfono:* ${tel}%0A` +
-        `📍 *Dirección:* ${dir}%0A` +
-        `🏙️ *Comuna/Región:* ${com}%0A%0A` +
-        `Confirmo que habrá alguien para recibir y pagar al repartidor.`;
+                <div>
+                    <label class="block text-gray-400 font-semibold mb-1 uppercase tracking-wider">Dirección de Despacho</label>
+                    <input type="text" id="direccion-pedido" placeholder="Calle, número, departamento" class="w-full bg-black/40 border border-red-950/40 rounded-lg py-2 px-3 text-white focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition" required>
+                </div>
 
-      window.open(`https://wa.me/${WHATSAPP_TIENDA}?text=${mensaje}`, '_blank');
-    }
-  </script>
+                <div>
+                    <label class="block text-gray-400 font-semibold mb-1 uppercase tracking-wider">Comuna / Región</label>
+                    <input type="text" id="comuna-pedido" placeholder="Ej: Maipú, Región Metropolitana" class="w-full bg-black/40 border border-red-950/40 rounded-lg py-2 px-3 text-white focus:border-red-500 focus:ring-1 focus:ring-red-500 outline-none transition" required>
+                </div>
+
+                <!-- Resumen de Costo -->
+                <div class="bg-black/60 border border-red-950/30 rounded-lg p-3 flex justify-between items-center mt-6">
+                    <div>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold block">TOTAL A PAGAR AL RECIBIR</span>
+                        <span class="text-[10px] text-green-500 font-bold uppercase">ENVÍO GRATIS INCLUIDO</span>
+                    </div>
+                    <div id="precio-total" class="text-xl font-black text-amber-500">$19.990</div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <button type="submit" class="btn-fenix w-full py-4 rounded-lg font-black uppercase text-xs tracking-wider mt-4 flex items-center justify-center gap-3">
+                    CONFIRMAR PEDIDO VÍA WHATSAPP <i class="fa-brands fa-whatsapp text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer de la Página -->
+    <footer class="bg-black border-t border-red-950/40 py-8 px-4 text-center">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-4">
+            <div class="w-10 h-10 rounded-full border border-red-500/40 flex items-center justify-center overflow-hidden logo-pulse bg-black">
+                <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/image_12.png" alt="Logo Tecnologia Feniix" class="object-cover w-full h-full" onerror="this.src='https://i.ibb.co/680373p/fenix.png'">
+            </div>
+            <p class="text-xs font-bold tracking-widest text-gradient uppercase">TECNOLOGÍA FENIIX</p>
+            <p class="text-[10px] text-gray-500">
+                © 2026 TecnologiaFeniix. Todos los derechos reservados. <br>
+                Compra contra entrega segura en todo Chile.
+            </p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Botón Flotante interactivo -->
+    <a href="https://wa.me/56944511191?text=Hola,%20me%20gustaria%20saber%20mas%20sobre%20sus%20productos." target="_blank" class="fixed bottom-5 right-5 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center text-3xl shadow-lg transition duration-300 transform hover:scale-110 hover:rotate-6 z-50">
+        <i class="fa-brands fa-whatsapp animate-bounce"></i>
+    </a>
+
+    <!-- Librerías y Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar AOS para las animaciones de movimiento al hacer scroll
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Configuración de tu número de WhatsApp real
+        const WHATSAPP_TIENDA = "56944511191";
+
+        // Formateador de moneda CLP
+        const formatoCLP = new Intl.NumberFormat('es-CL', {
+            style: 'currency',
+            currency: 'CLP',
+            minimumFractionDigits: 0
+        });
+
+        // Lógica para elegir producto desde el catálogo
+        function seleccionarProducto(nombre, precio) {
+            const select = document.getElementById('producto-pedido');
+            const options = select.options;
+            
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].value === nombre) {
+                    select.selectedIndex = i;
+                    break;
+                }
+            }
+            
+            document.getElementById('precio-total').innerText = formatoCLP.format(precio);
+            
+            // Hacer scroll hasta el formulario con animación
+            document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Cambiar costo dinámicamente si se cambia el select
+        function actualizarPrecio(selectElement) {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const precio = parseInt(selectedOption.getAttribute('data-precio'), 10);
+            document.getElementById('precio-total').innerText = formatoCLP.format(precio);
+        }
+
+        // Procesar y enviar pedido vía WhatsApp
+        function enviarPedido(e) {
+            e.preventDefault();
+
+            const producto = document.getElementById('producto-pedido').value;
+            const precioText = document.getElementById('precio-total').innerText;
+            const nombre = document.getElementById('nombre-pedido').value;
+            const telefono = document.getElementById('telefono-pedido').value;
+            const direccion = document.getElementById('direccion-pedido').value;
+            const comuna = document.getElementById('comuna-pedido').value;
+
+            // Formatear el mensaje para WhatsApp
+            const mensaje = `🔥 *NUEVO PEDIDO - TECNOLOGÍA FENIIX* 🔥%0A%0A` +
+                            `📦 *Producto:* ${producto}%0A` +
+                            `💵 *Total:* ${precioText} (Paga al recibir)%0A%0A` +
+                            `👤 *Cliente:* ${nombre}%0A` +
+                            `📞 *Teléfono:* +56 ${telefono}%0A` +
+                            `🏠 *Dirección:* ${direccion}%0A` +
+                            `📍 *Comuna:* ${comuna}%0A%0A` +
+                            `🚀 *Quedo a la espera de la confirmación del despacho.*`;
+
+            // Redirección directa al chat con los datos completos
+            window.open(`https://wa.me/${WHATSAPP_TIENDA}?text=${mensaje}`, '_blank');
+        }
+    </script>
 </body>
 </html>
