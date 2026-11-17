@@ -331,7 +331,7 @@
 
                 <div>
                     <label class="block text-gray-300 font-bold mb-1.5 uppercase tracking-wider">Tu Nombre Completo</label>
-                    <input type="text" id="nombre-pedido" placeholder="Ej: Juan Pérez (Tecnología Feniix)" class="w-full bg-black/50 border border-red-950/80 rounded-xl py-3 px-3.5 text-white focus:border-red-500 outline-none transition" required>
+                    <input type="text" id="nombre-pedido" placeholder="Ej: Juan Pérez" class="w-full bg-black/50 border border-red-950/80 rounded-xl py-3 px-3.5 text-white focus:border-red-500 outline-none transition" required>
                 </div>
 
                 <div>
@@ -390,7 +390,7 @@
     <script>
         AOS.init({ duration: 800, once: true });
         const WHATSAPP_TIENDA = "56944511191";
-        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzyxdELGkzb8PjfxYRbAUopx-9P7zihKiBY9EwoJvMSEe8uXysjLMxFI3H-WH-Yqh29uw/exec";
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyn-RlkDiMAlsviz8zGczpfd_11fxjPrUTBDc5lQzeB5VbUz07bHKYqkDYbn6-FqqnhCw/exec";
         const formatoCLP = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 });
 
         function seleccionarProducto(nombre, precio) {
@@ -436,15 +436,15 @@
                 body: JSON.stringify(datosCliente)
             }).catch(error => console.error('Error al guardar en Excel:', error));
 
-            // 2. Abrir WhatsApp con el pedido estructurado para ti y Dropi
-            const mensaje = `🔥 *NUEVO PEDIDO - TECNOLOGÍA FENIIX* 🔥%0A%0A` +
-                            `📦 *Producto:* ${producto}%0A` +
-                            `💵 *Total:* ${precioText} (Paga al recibir)%0A%0A` +
-                            `👤 *Cliente:* ${nombre}%0A` +
-                            `📞 *Teléfono:* +56 ${telefono}%0A` +
-                            `🏠 *Dirección:* ${direccion}%0A` +
-                            `📍 *Comuna:* ${comuna}%0A%0A` +
-                            `🚀 *Quedo a la espera de la confirmación del despacho.*`;
+            // 2. Abrir WhatsApp con un formato limpio, ordenado y sin símbolos raros
+            const mensaje = `*NUEVO PEDIDO - TECNOLOGÍA FENIIX*%0A%0A` +
+                            `*Producto:* ${producto}%0A` +
+                            `*Total:* ${precioText} (Paga al recibir)%0A%0A` +
+                            `*Cliente:* ${nombre}%0A` +
+                            `*Teléfono:* +56 ${telefono}%0A` +
+                            `*Dirección:* ${direccion}%0A` +
+                            `*Comuna:* ${comuna}%0A%0A` +
+                            `_Quedo a la espera de la confirmación del despacho._`;
 
             window.open(`https://wa.me/${WHATSAPP_TIENDA}?text=${mensaje}`, '_blank');
         }
