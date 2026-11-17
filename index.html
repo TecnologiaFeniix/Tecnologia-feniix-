@@ -104,7 +104,7 @@
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="w-11 h-11 bg-black rounded-full border border-red-500/80 flex items-center justify-center logo-pulse overflow-hidden p-0.5 shadow-lg">
-                    <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/logo.png" alt="Tecnología Feniix Logo" class="object-cover w-full h-full rounded-full" onerror="this.src='logo.png'">
+                    <img src="logo.png" alt="Tecnología Feniix Logo" class="object-cover w-full h-full rounded-full">
                 </div>
                 <div>
                     <h1 class="text-base md:text-lg font-black tracking-widest text-gradient">TECNOLOGÍA FENIIX</h1>
@@ -153,7 +153,7 @@
             
             <div class="flex-1 max-w-xs sm:max-w-sm md:max-w-md w-full" data-aos="fade-left">
                 <div class="relative p-4 rounded-3xl border border-red-500/30 bg-gradient-to-br from-red-950/30 via-black to-zinc-950 glow-border flex items-center justify-center">
-                    <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/logo.png" alt="Logo Fénix" class="w-full rounded-2xl logo-pulse shadow-2xl" onerror="this.src='logo.png'">
+                    <img src="logo.png" alt="Logo Fénix" class="w-full rounded-2xl logo-pulse shadow-2xl">
                 </div>
             </div>
         </div>
@@ -368,7 +368,7 @@
     <footer class="bg-black border-t border-red-950/50 py-10 px-4 text-center">
         <div class="max-w-4xl mx-auto flex flex-col items-center gap-4">
             <div class="w-12 h-12 rounded-full border border-red-500/50 flex items-center justify-center overflow-hidden logo-pulse bg-black p-0.5">
-                <img src="https://raw.githubusercontent.com/TecnologiaFeniix/Tecnologia-feniix-/main/logo.png" alt="Logo Tecnologia Feniix" class="object-cover w-full h-full rounded-full" onerror="this.src='logo.png'">
+                <img src="logo.png" alt="Logo Tecnologia Feniix" class="object-cover w-full h-full rounded-full">
             </div>
             <p class="text-sm font-black tracking-widest text-gradient uppercase">TECNOLOGÍA FENIIX</p>
             <p class="text-xs text-gray-400 max-w-md">
@@ -390,6 +390,7 @@
     <script>
         AOS.init({ duration: 800, once: true });
         const WHATSAPP_TIENDA = "56944511191";
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzyxdELGkzb8PjfxYRbAUopx-9P7zihKiBY9EwoJvMSEe8uXysjLMxFI3H-WH-Yqh29uw/exec";
         const formatoCLP = new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 });
 
         function seleccionarProducto(nombre, precio) {
@@ -418,6 +419,24 @@
             const direccion = document.getElementById('direccion-pedido').value;
             const comuna = document.getElementById('comuna-pedido').value;
 
+            // 1. Guardar automáticamente en Google Sheets de forma invisible
+            const datosCliente = {
+                producto: producto,
+                total: precioText,
+                nombre: nombre,
+                telefono: telefono,
+                direccion: direccion,
+                comuna: comuna
+            };
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datosCliente)
+            }).catch(error => console.error('Error al guardar en Excel:', error));
+
+            // 2. Abrir WhatsApp con el pedido estructurado para ti y Dropi
             const mensaje = `🔥 *NUEVO PEDIDO - TECNOLOGÍA FENIIX* 🔥%0A%0A` +
                             `📦 *Producto:* ${producto}%0A` +
                             `💵 *Total:* ${precioText} (Paga al recibir)%0A%0A` +
